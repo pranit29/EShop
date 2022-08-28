@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using System.Net.Http
+@using EShop.Utility
+@using Microsoft.AspNetCore.Http
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@inject IHttpContextAccessor HttpContextAccessor
+@{ var userRole = HttpContextAccessor.HttpContext.Session.GetString("roleName");
+    int count = 1;
+    List<Products> products = HttpContextAccessor.HttpContext.Session.Get<List<Products>>("products");
+    if (products == null)
+    {
+        products = new List<Products>();
+    }
+    count = products.Count(); }
+
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Admin" asp-controller="ProductTypes" asp-action="Index">ProductTypes</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Admin" asp-controller="SpecialTag" asp-action="Index">TagName</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Customer" asp-controller="User" asp-action="Index">UserDetails</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Cart">
+                Cart
+                (@count)
+            </a>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+
+
+    }
+</ul>

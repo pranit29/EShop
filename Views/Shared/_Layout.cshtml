@@ -1,0 +1,72 @@
+﻿@using System.Net.Http
+@using EShop.Utility
+@using Microsoft.AspNetCore.Http
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EShop</title>
+    <link rel="icon" type="image/x-icon" href="~/Images/favicon.jpg">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        body {
+            @* background-image: url('https://media.istockphoto.com/photos/supermarket-trolleys-stand-in-a-row-outside-the-store-picture-id1364943913?s=612x612');*@
+            @*background-image: url('https://www.google.com/imgres?imgurl=https%3A%2F%2Ft4.ftcdn.net%2Fjpg%2F02%2F86%2F36%2F11%2F360_F_286361199_fzZsOpZ3memFzCn889a9TZHMuTTsFrVl.jpg&imgrefurl=https%3A%2F%2Fstock.adobe.com%2Fsearch%3Fk%3Dshopping%2Bbackground&tbnid=OeAaJCtBjs-HSM&vet=1&docid=aelmPIlS5P9jeM&w=540&h=360&itg=1&hl=en-GB&source=sh%2Fx%2Fim');*@
+            background-image: url('https://eshopstrorage.blob.core.windows.net/eshopimages/cart.jpg?sp=r&st=2022-05-12T05:55:45Z&se=2022-05-12T13:55:45Z&spr=https&sv=2020-08-04&sr=b&sig=h7SKujxqARmgoD24Uuw8sHRN8T1QIVe50WpDVf%2BDHP8%3D');
+            
+            background-repeat: no-repeat;
+            background-size: 100% 92.9%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/Images/favicon.jpg"height="50px" width="80px" style="margin-bottom:5px"  />
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Customer" asp-controller="User" asp-action="AboutUS">AboutUS</a>
+                        </li>
+                        
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - EShop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
